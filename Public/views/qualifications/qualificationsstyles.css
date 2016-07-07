@@ -1,0 +1,45 @@
+@import url(https://www.google.com/fonts#UsePlace:use/Collection:Raleway);
+.qualificationscontainer {
+    height: 100%;
+    width: auto;
+    padding-top: 30px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.q-h {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: yellow;
+}
+.q-p {
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/************** Tablets ***********************/
+
+@media only screen and (max-width: 770px) {}
+
+/******************* Cell Phone *******************************/
+
+@media only screen and (max-width: 450px) {
+    .qualificationscontainer {
+        justify-content: flex-start;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+    .q-h {
+        margin-bottom: 20px;
+    }
+    .q-p {
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}

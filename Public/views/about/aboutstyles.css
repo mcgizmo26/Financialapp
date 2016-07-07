@@ -1,0 +1,69 @@
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+.aboutcontainer {
+    height: 100%;
+    width: auto;
+    padding-top: 30px;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.abouttext {
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+.abouttext p {
+    margin-bottom: 10px;
+}
+.ceo img{
+    display: flex;
+    float: right;
+    margin-right: 20px;
+    height: 100px;
+    width: 150px;
+}
+.ceosignature {
+    margin-top: 5px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+}
+
+/************** Tablets ***********************/
+
+@media only screen and (max-width: 770px) {
+    .aboutcontainer {
+        padding-top: 30px;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+    .abouttext {
+        font-size: 20px;
+    }
+}
+
+/******************* Cell Phone *******************************/
+
+@media only screen and (max-width: 450px) {
+    .aboutcontainer {
+        margin-top: 0px;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+    .abouttext {
+        /*height: 100%;
+        width: auto;*/
+        color: white;
+        font-size: 20px;
+        
+    }
+    .abouttext p {
+        margin-top: 10px;
+    }
+}
