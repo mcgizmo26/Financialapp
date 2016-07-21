@@ -1,6 +1,6 @@
 angular.module("testApp")
-    .controller("retrieveController", function($scope, retrieveService, mainService, $state) {
-        $scope.user = mainService.user;
+    .controller("retrieveController", function($scope, retrieveService, mainService, $state, user) {
+        $scope.user = user;
 
         $scope.myUsers = retrieveService.getUser().then(function(response) {
             console.log(response);

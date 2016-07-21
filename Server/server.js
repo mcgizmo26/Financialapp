@@ -6,9 +6,6 @@
 //
 // *****************************************************************
 
-
-
-
 // ********************** Dependancies *************************
 
 var express = require('express');
@@ -16,24 +13,23 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var User = require('./private/schema/userschema');
 var mongoose = require('mongoose');
+var passport = require('./passport');
 
 
 // ***********  testApp db connect to mongo ***************
 
-mongoose.connect("mongodb://localhost/testApp",  function (err, res) {
-     if (err) {
-       console.log ('ERROR connecting to testApp. '  + err);
-     } else {
-       console.log ('Successfully connected to testApp.');
-     }
-   });
+mongoose.connect("mongodb://localhost/testApp");
 
-
-
-
+// ********* function used to test connection ************
+//  mongoose.connect("mongodb://localhost/testApp",  function (err, res) {
+//       if (err) {
+//         console.log ('ERROR connecting to testApp. '  + err);
+//       } else {
+//         console.log ('Successfully connected to testApp.');
+//       }
+//     });
 
 var app = express();
-
 
 // ********************** Middle Ware **************************
 
@@ -41,25 +37,47 @@ app.use(bodyParser.json());
 app.use(express.static('Public'));
 app.use(session({
     secret: 'testsecretonly123',
+    saveUninitialized: false,
+    resave: false
 }))
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-// *********************** Underwriters Creation *********************
+//************************ Passport Endpoints *******************
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/me',
+}));
 
+app.get('/logout', function(req, res, next) {
+    req.logout();
+    console.log("logged out")
+    return res.status(200).send('logged out');
+});
+
+app.get('/me', function(req, res, next){
+  console.log(req.user);
+  if (!req.user) req.status(401).send('current user not found');
+  delete req.user.password;
+  res.status(200).send(req.user)
+})
+
+
+// *********************** Endpoints **************************
+
+// ***** Underwriters Creation ******
 app.post('/users', function(req, res, next) {
     User.create(req.body, function(err, user) {
         if (err) {
-            return res.send(user);
+            return res.send(err);
         }
         req.session.user = user;
         return res.send(user);
     })
-
 })
 
-// ************************* Retrieve User **********************
-
+// ***** Retrieve User *****
 app.get('/retrieveusers', function(req, res, next) {
     User.find(req.body, function(err, user) {
 
@@ -70,21 +88,17 @@ app.get('/retrieveusers', function(req, res, next) {
     })
 })
 
-
-// *************************** User Creating **********************
-
+// ***** User Creating *****
 app.post('/createuser', function(req, res) {
-  console.log(req.body);
-  var newUser = new User(req.body);
-  newUser.save(function(err, result){
-    if(err) return res.send(err);
-    else res.send(result);
-  })
+    console.log(req.body);
+    var newUser = new User(req.body);
+    newUser.save(function(err, result) {
+        if (err) return res.send(err);
+        else res.send(result);
+    })
 })
 
-
-// ********************** Finding Linked Users ********************
-
+// ***** Finding Linked Users *****
 app.get('/underwritersuser', function(req, res, next) {
     User.find({
         underwriterId: req.session.user._id,
@@ -98,9 +112,7 @@ app.get('/underwritersuser', function(req, res, next) {
     })
 })
 
-
-// ************************** Finding Users **********************
-
+// ***** Finding Users *****
 app.get('/users/:userId', function(req, res, next) {
     User.findById(req.params.userId, req.body, function(err, result) {
         console.log(err, result);
@@ -112,9 +124,7 @@ app.get('/users/:userId', function(req, res, next) {
     })
 })
 
-
-// **************************** Update User **************************
-
+// ***** Update User *****
 app.put('/userupdate/:userId', function(req, res, next) {
     console.log(req.body);
     User.findByAndUpdate(req.params.userId, req.body, function(err, result) {
@@ -127,8 +137,7 @@ app.put('/userupdate/:userId', function(req, res, next) {
     })
 })
 
-
-// app.get('/users', func)
+// ********************************************************
 
 
 // ******************** node server ********************

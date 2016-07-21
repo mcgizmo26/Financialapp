@@ -11,20 +11,20 @@
 
 
             <div class="username">Username</div>
-            <input ng-model="name" placeholder="UserName..." />
+            <input ng-model="user.username" placeholder="UserName..." />
 
 
 
             <div class="password">Password</div>
-            <input ng-model="password" placeholder="Password..." />
+            <input type="password" ng-model="user.password" placeholder="Password..." />
 
 
         </div>
 
         <div class="submit-section">
 
-            <div class="submit-user" ui-sref="userpage">User Login</div>
-            <div class="submit-employee" ui-sref="employeepage">Employee Login</div>
+            <div class="submit-user" ng-click="login(user)">User Login</div>
+            <div class="submit-employee" ng-click="employeepage">Employee Login</div>
 
         </div>
 
