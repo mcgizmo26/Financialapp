@@ -1,0 +1,22 @@
+.user-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-box{
+  height: 500px;
+  width: 600px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+  flex-direction: column;
+  display: flex;
+}
+
+.user-info{
+  height: 100%;
+  width: 100%;
+}

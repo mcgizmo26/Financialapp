@@ -1,0 +1,36 @@
+.applycontainer{
+  height: 100%;
+  width: 100%;
+}
+
+.completedarea{
+  height: 500px;
+  width: 720px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.completedtext{
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: white;
+}
+
+/************** Tablets ***********************/
+
+@media only screen and (max-width: 770px) {
+
+}
+
+
+/******************* Cell Phone *******************************/
+
+@media only screen and (max-width: 450px) {
+  .completedtext{
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+}

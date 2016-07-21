@@ -1,0 +1,38 @@
+<div class="applycontainer">
+
+    <!-- ***************** Application Form ******************** -->
+
+    <div class="applyform">
+
+      <div class="appheader"><span class="lettercolor">T</span>itan <span class="lettercolor">F</span>inancial</div>
+
+        <!-- ******************* Employer Section ********************* -->
+
+        <div class="Employment">Employers Info</div>
+
+        <div class="employment-section">
+
+            <div class="Employ">
+                <div id="employer">Employer Name</div>
+                <input id="employerinput" ng-model="user.obj.employername" placeholder="Employer..." />
+            </div>
+
+            <div class="Employnum">
+                <div Class="employertele">Employer Number</div>
+                <input ng-model="user.obj.employertele" <input ng-change="addDashes('BuisnessTele', BuisnessTele)" ng-model-options='{ debounce: 250 }' ng-model="BuisnessTele" maxlength='12' placeholder="Buisness Number..." />
+            </div>
+
+            <div class="Employemail">
+                <div Class="business-email">Employer E-mail</div>
+                <input ng-model="user.obj.businessemail" placeholder="Employrer Email..." />
+            </div>
+
+        </div>
+
+        <div class="buttons2">
+            <div class="submit2" ui-sref="apply3">Submit</div>
+            <div class="back" ui-sref="apply1">Back</div>
+        </div>
+
+    </div>
+</div>

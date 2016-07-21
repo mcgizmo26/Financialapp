@@ -1,0 +1,42 @@
+.employee-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /*background-image: url('../../../img/employeebackground5.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;*/
+  justify-content: center;
+  align-items: center;
+}
+
+.employee-box{
+  height: 600px;
+  width: 1000px;
+  border: Solid 2px black;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #D6D6D6;
+  flex-direction: column;
+  display: flex;
+}
+
+.employee-info{
+  height: 100%;
+  width: 100%;
+}
+
+.find-user{
+  height: 40px;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.find{
+  margin-right: 10px;
+}
+
+.finderbox{
+ margin-top: 0;
+}

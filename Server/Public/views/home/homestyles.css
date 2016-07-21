@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster+Two:400italic);
+
+
+.homecontainer{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.buisnessname{
+  font-size: 100px;
+  font-family: 'Lobster Two', cursive;
+  font-weight: 400;
+  color: white;
+}
+
+.lettercolor{
+  color: red;
+}
+
+.login{
+  height: 50px;
+  width: 150px;
+  font-size: 30px;
+  color: white;
+  border: solid white 5px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login:hover{
+  color: yellow;
+  border: solid yellow 5px;
+}
+
+/************** Tablets ***********************/
+
+@media only screen and (max-width: 770px) {
+  .buisnessname{
+    font-size: 80px;
+    margin-bottom: 50px;
+  }
+}
+
+
+/******************* Cell Phone *******************************/
+
+@media only screen and (max-width: 450px) {
+  .buisnessname{
+    font-size: 50px;
+    margin-bottom: 100px;
+  }

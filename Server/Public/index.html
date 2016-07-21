@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./views/terms/terms.css">
+    <link rel="stylesheet" href="./views/about/aboutstyles.css">
+    <link rel="stylesheet" href="./views/home/homestyles.css">
+    <link rel="stylesheet" href="./views/apply/apply-css/applystyles.css">
+    <link rel="stylesheet" href="./views/apply/apply-css/apply1styles.css">
+    <link rel="stylesheet" href="./views/apply/apply-css/apply2styles.css">
+    <link rel="stylesheet" href="./views/apply/apply-css/apply3styles.css">
+    <link rel="stylesheet" href="./views/qualifications/qualificationsstyles.css">
+    <link rel="stylesheet" href="./views/login/login.css">
+    <link rel="stylesheet" href="./views/userpage/userpage.css">
+    <link rel="stylesheet" href="./views/employeefolder/employee-css/employee.css">
+
+    <title>test</title>
+</head>
+
+<!-- ***************************** Body Section ******************************** -->
+
+<body ng-app="testApp">
+    <div section="main-container">
+        <div class="main">
+            <div class="mainimage">
+                <div class="header">
+                    <div class="menu"><img height="75px" src="./img/menubutton.png" ng-click="show=!show"></div>
+
+                    <div class="text-section" ng-click="show=!show" ng-init="show=false" ng-class="{'show-menu': show}">
+                        <div class="home-screen" ui-sref="home">Home</div>
+                        <div class="about" ui-sref="about">About</div>
+                        <div class="qualifications" ui-sref="qualifications">Qualifications</div>
+                        <div class="apply" ui-sref="apply">Apply</div>
+                    </div>
+
+                </div>
+                <div class="main-content">
+                    <ui-view></ui-view>
+                </div>
+                <div class="footer">
+                    <div class="terms-conditions" ui-sref="terms">Terms and Conditions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- *************** angular files ******************** -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
+
+
+    <!-- **************** App JS ******************* -->
+
+    <script src="./testApp.js"></script>
+
+    <!-- ************************** Directives ************************* -->
+
+    <script src="./views/about/aboutDirective.js"></script>
+    <script src="./views/apply/applyDirective.js"></script>
+    <script src="./views/home/homeDirective.js"></script>
+    <script src="./views/qualifications/qualificationsDirective.js"></script>
+
+    <!-- ********************* Services ************************** -->
+
+<script src="./services/applyService.js"></script>
+
+    <script src="./services/deleteUserService.js"></script>
+    <script src="./services/mainService.js"></script>
+    <script src="./services/retrieveUserService.js"></script>
+    <script src="./services/updateUserService.js"></script>
+
+    <!-- ************************** Controllers ************************ -->
+
+    <script src="./controllers/applyController.js"></script>
+    <script src="./controllers/retrieveController.js"></script>
+    <script src="./controllers/mainController.js"></script>
+
+
+</body>
+
+</html>
