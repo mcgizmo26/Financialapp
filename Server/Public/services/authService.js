@@ -1,5 +1,8 @@
 angular.module("testApp").service("authService", function($http) {
 
+
+// *************************** user login ************************
+
   this.login = function(user) {
     return $http({
       method: 'post',
@@ -42,6 +45,57 @@ angular.module("testApp").service("authService", function($http) {
     return $http({
       method: 'PUT',
       url: "/user/" + id,
+      data: user
+    }).then(function(response) {
+      return response;
+    });
+  };
+
+
+// *************************** employee login ************************
+
+  this.employeelogin = function(user) {
+    return $http({
+      method: 'post',
+      url: '/employeelogin',
+      data: user
+    }).then(function(response) {
+      return response;
+    });
+  };
+
+  this.employeelogout = function() {
+    return $http({
+      method: 'get',
+      url: '/logout'
+    }).then(function(response) {
+      return response;
+    });
+  };
+
+  this.getCurrentEmployee = function() {
+    return $http({
+      method: 'GET',
+      url: '/me1'
+    }).then(function(response) {
+      return response;
+    });
+  };
+
+  this.registerEmployee = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/employees',
+      data: user
+    }).then(function(response) {
+      return response;
+    });
+  };
+
+  this.editEmployee = function(id, user) {
+    return $http({
+      method: 'PUT',
+      url: "/employee/" + id,
       data: user
     }).then(function(response) {
       return response;

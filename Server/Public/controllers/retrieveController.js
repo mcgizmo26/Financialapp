@@ -1,14 +1,14 @@
 angular.module("testApp")
     .controller("retrieveController", function($scope, retrieveService, mainService, $state, user) {
-        $scope.user = user;
+        $scope.userObj = user;
+        console.log($scope.userObj);
 
-        $scope.myUsers = retrieveService.getUser().then(function(response) {
-            console.log(response);
-            $scope.theseUsers = response;
-        })
+        // $scope.myUsers = retrieveService.getUser().then(function(response) {
+        //     $scope.theseUsers = response;
+        // })
 
         $scope.viewUsers = function(userId) {
-            $state.go('users', {
+            $state.go('userpage', {
                 userId: userId
             });
         }

@@ -2,6 +2,7 @@
   height: 100%;
   width: 100%;
   display: flex;
+  cursor: pointer;
   /*background-image: url('../../../img/employeebackground5.jpg');
   background-size: cover;
   background-repeat: no-repeat;*/
@@ -10,8 +11,8 @@
 }
 
 .employee-box{
-  height: 600px;
-  width: 1000px;
+  height: 500px;
+  width: 1300px;
   border: Solid 2px black;
   padding-left: 15px;
   padding-right: 15px;
@@ -20,14 +21,31 @@
   display: flex;
 }
 
+/*<!-- ********************** Left Side ************************** -->*/
+.employee-left-box{
+  height: 100%;
+  width: 50%;
+  border-right: dashed red 2px;
+}
+
 .employee-info{
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .find-user{
   height: 40px;
-  width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user-features{
+  height: 40px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,6 +55,87 @@
   margin-right: 10px;
 }
 
+.myfind{
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
 .finderbox{
  margin-top: 0;
+}
+
+
+
+/*<!-- ********************** Right Side ************************** -->*/
+.employee-right-box{
+  height: 100%;
+  width: 50%;
+  padding-left: 15px;
+}
+
+.users-populated-container-left{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.users-populated-box{
+  height: 100%;
+  width:50%;
+}
+
+.my-users-populated-box{
+  height: 100%;
+  width:50%;
+}
+
+.users-populated-container-right{
+  display: flex;
+  flex-direction: row;
+}
+
+
+/************************************/
+.single-user-populated{
+  border-top: black solid;
+  height:100%;
+  width: 50%;
+}
+
+.single-user-update{
+    border-top: black solid;
+  height:100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.single-user-populated p{
+  padding: 5px;
+  height: 20px;
+  margin-bottom: 8px;
+}
+
+.single-user-populated p span{
+  font-weight: bold;
+}
+
+.users-populated-box{
+  height: 100%;
+  width:50%;
+}
+
+.my-users-populated-box{
+  height: 100%;
+  width:50%;
+}
+
+.single-user-update{
+  height:100%;
+  width: 50%;
+}
+
+.single-user-update input{
+  margin-bottom: 6px;
 }

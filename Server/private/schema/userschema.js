@@ -14,7 +14,8 @@ var userSchema = new Schema({
     username: {
         type: String,
         // required: true,
-        index: true
+        index: true,
+        unique: true
     },
 
     password: {
@@ -39,7 +40,6 @@ var userSchema = new Schema({
 
     // ****************Date of Birth *********************
 
-    dob: {
         monthinput: {
             type: String,
             enum: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -55,23 +55,22 @@ var userSchema = new Schema({
         yearinput: {
             type: Number,
             // required: true
-        }
-    },
+        },
     // *********************** SSN *******************************
 
     ssn: {
-        type: Number,
+        type: String,
         // required: true
     },
     // ************************* Contact Info ********************
 
     hometele: {
-        type: Number,
+        type: String,
 
     },
 
     celltele: {
-        type: Number,
+        type: String,
         // required: true
     },
 
@@ -96,10 +95,10 @@ var userSchema = new Schema({
 
     stateinput: {
         type: String,
-        enum: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana',
-            'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-            'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ],
+        // enum: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana',
+        //     'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+        //     'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        // ],
         // required: true
     },
 
@@ -117,7 +116,7 @@ var userSchema = new Schema({
    },
 
     employertele: {
-        type: Number,
+        type: String,
         // required: true
     },
 

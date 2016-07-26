@@ -2,11 +2,83 @@
 
     <div class="employee-box">
         <div class="employee-info">
-            <div class="find-user">
-                <div class="find">Find User</div>
-                <input class="finderbox" ng-model="finder" placeholder="Search for User........" />
-            </div>
-        </div>
-    </div>
+            <div class="employee-left-box">
+                <div class="find-user">
 
-</div>
+                    <div class="find">Find User</div>
+                    <input class="finderbox" ng-model="finder.lastname" placeholder="Search for User........" />
+
+                    <div class="myfind">Find My User</div>
+                    <input class="finderbox" ng-model="myfinder" placeholder="Search for User........" />
+
+                </div>
+
+                <div class="users-populated-container-left">
+
+                    <div class="users-populated-box">
+                        <div class="users-populated" ng-click="getUser(user)" ng-repeat="user in users | filter: finder">
+                            {{user.firstname}} {{user.lastname}}
+                        </div>
+                    </div>
+
+                    <div class="my-users-populated-box">
+                        <div class="my-users-populated" ng-click="getUser(user)" ng-repeat="user in users | filter: finder">
+                            {{user.firstname}} {{user.lastname}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="employee-right-box">
+                <div class="user-features"></div>
+                
+                <div class="users-populated-container-right">
+                    <div class="single-user-populated">
+                        <p><span>First Name: </span> {{userObj.firstname}}</p>
+                        <p> <span>Last Name: </span>{{userObj.lastname}}</p>
+                        <p> <span>Birth Month: </span>{{userObj.monthinput}}</p>
+                        <p> <span>Birth Day: </span>{{userObj.dayinput}}</p>
+                        <p> <span>Birth Year: </span>{{userObj.yearinput}}</p>
+                        <p> <span>SSN: </span>{{userObj.ssn}}</p>
+                        <p> <span>Home Number: </span>{{userObj.hometele}}</p>
+                        <p> <span>Cell Number: </span>{{userObj.celltele}}</p>
+                        <p><span>Email: </span>{{userObj.email}}</p>
+                        <p> <span>Street Address: </span>{{userObj.addressinput}}</p>
+                        <p> <span>City: </span>{{userObj.cityinput}}</p>
+                        <p> <span>State: </span>{{userObj.stateinput}}</p>
+                        <p> <span>Zip Code: </span>{{userObj.zipcode}}</p>
+                        <p> <span>Employer Name: </span>{{userObj.employername}}</p>
+                        <p> <span>Employer Number: </span>{{userObj.employertele}}</p>
+                        <p> <span>Employer Email: </span>{{userObj.businessemail}}</p>
+                    </div>
+
+                    <div class="single-user-update">
+                        <input class="update-first-name" placeholder="Update First Name" />
+                        <input class="update-last-name" placeholder="Update Last Name" />
+                        <input class="update-birth-month" placeholder="Update Birth Month" />
+                        <input class="update-birth-day" placeholder="Update Birth Day" />
+                        <input class="update-birth-year" placeholder="Update Birth Year" />
+                        <input class="update-ssn" placeholder="Update SSN" />
+                        <input class="update-home-number" placeholder="Update Home Number" />
+                        <input class="update-cell-number" placeholder="Update Cell Number" />
+                        <input class="update-email" placeholder="Update Email" />
+                        <input class="update-street-address" placeholder="Update Street Address" />
+                        <input class="update-city" placeholder="Update City" />
+                        <input class="update-state" placeholder="Update State" />
+                        <input class="update-zip-code" placeholder="Update Zip Code" />
+                        <input class="update-employer-name" placeholder="Update Employer Name" />
+                        <input class="update-employer-number" placeholder="Update Employer Number" />
+                        <input class="update-employer-email" placeholder="Update Employer Email" />
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>

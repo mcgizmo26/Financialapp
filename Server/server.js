@@ -6,33 +6,31 @@
 //
 // *****************************************************************
 
-// ********************** Dependancies *************************
 
+
+
+
+// ********************** Dependancies *************************
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var User = require('./private/schema/userschema');
 var mongoose = require('mongoose');
 var passport = require('./passport');
+// *****************************************************************
+
+
+
 
 
 // ***********  testApp db connect to mongo ***************
-
 mongoose.connect("mongodb://localhost/testApp");
-
-// ********* function used to test connection ************
-//  mongoose.connect("mongodb://localhost/testApp",  function (err, res) {
-//       if (err) {
-//         console.log ('ERROR connecting to testApp. '  + err);
-//       } else {
-//         console.log ('Successfully connected to testApp.');
-//       }
-//     });
+// *********************************************************
 
 var app = express();
 
-// ********************** Middle Ware **************************
 
+// ********************** Middle Ware **************************
 app.use(bodyParser.json());
 app.use(express.static('Public'));
 app.use(session({
@@ -43,9 +41,21 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+// **************************************************************
 
 
-//************************ Passport Endpoints *******************
+
+// ***************************** Policies **************************
+var isAuthed = function(req, res, next) {
+  if (!req.isAuthenticated()) return res.status(401).send();
+  return next();
+};
+
+
+
+//******************** Passport Endpoints *******************
+
+// ************ Passport User Endpoints **************
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/me',
 }));
@@ -57,25 +67,56 @@ app.get('/logout', function(req, res, next) {
 });
 
 app.get('/me', function(req, res, next){
+  if (!req.user) return res.status(401).send('current user not found');
+  req.user.password = null;
   console.log(req.user);
-  if (!req.user) req.status(401).send('current user not found');
+  return res.status(200).json(req.user)
+})
+// ****************************************************
+
+
+
+
+// ********** Passport Employee Endpoints ***********
+app.post('/employeelogin', passport.authenticate('local', {
+    successRedirect: '/me1',
+}));
+
+app.get('/employeelogout', function(req, res, next) {
+    req.logout();
+    console.log("logged out")
+    return res.status(200).send('logged out');
+});
+
+app.get('/me1', function(req, res, next){
+  console.log(req.user);
+  if (!req.user) res.status(401).send('current employee not found');
   delete req.user.password;
   res.status(200).send(req.user)
 })
+// *****************************************************
+
+// ****************************************************************
+
+
+
 
 
 // *********************** Endpoints **************************
 
-// ***** Underwriters Creation ******
-app.post('/users', function(req, res, next) {
-    User.create(req.body, function(err, user) {
-        if (err) {
-            return res.send(err);
-        }
-        req.session.user = user;
-        return res.send(user);
+// ***************** Users **********************
+
+// ***** User Creating *****
+app.post('/createuser', function(req, res) {
+    console.log(req.body);
+    var newUser = new User(req.body);
+    newUser.save(function(err, result) {
+      console.log(err);
+        if (err) return res.send(err);
+        else res.send(result);
     })
 })
+
 
 // ***** Retrieve User *****
 app.get('/retrieveusers', function(req, res, next) {
@@ -87,19 +128,25 @@ app.get('/retrieveusers', function(req, res, next) {
         return res.send(user);
     })
 })
+// ************************************************
 
-// ***** User Creating *****
-app.post('/createuser', function(req, res) {
-    console.log(req.body);
-    var newUser = new User(req.body);
-    newUser.save(function(err, result) {
-        if (err) return res.send(err);
-        else res.send(result);
+
+
+
+// ****************** Underwriters *******************
+
+app.post('/createunderwriter', function(req, res, next) {
+    User.create(req.body, function(err, user) {
+        if (err) {
+            return res.send(err);
+        }
+        req.session.user = user;
+        return res.send(user);
     })
 })
 
 // ***** Finding Linked Users *****
-app.get('/underwritersuser', function(req, res, next) {
+app.get('/retrieveunderwriters', function(req, res, next) {
     User.find({
         underwriterId: req.session.user._id,
         function(err, users) {
@@ -113,8 +160,8 @@ app.get('/underwritersuser', function(req, res, next) {
 })
 
 // ***** Finding Users *****
-app.get('/users/:userId', function(req, res, next) {
-    User.findById(req.params.userId, req.body, function(err, result) {
+app.get('/getuser/:userId', function(req, res, next) {
+    User.findById(req.params.userId, function(err, result) {
         console.log(err, result);
         if (err) {
             return res.send(err);
@@ -136,8 +183,10 @@ app.put('/userupdate/:userId', function(req, res, next) {
         }
     })
 })
-
 // ********************************************************
+
+
+
 
 
 // ******************** node server ********************
@@ -146,3 +195,17 @@ var port = 3000;
 app.listen(port, function() {
     console.log('listening on port ', port);
 });
+// *****************************************************
+
+
+
+
+
+// ********* function used to test connection ************
+//  mongoose.connect("mongodb://localhost/testApp",  function (err, res) {
+//       if (err) {
+//         console.log ('ERROR connecting to testApp. '  + err);
+//       } else {
+//         console.log ('Successfully connected to testApp.');
+//       }
+//     });

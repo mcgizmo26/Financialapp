@@ -1,5 +1,5 @@
 angular.module('testApp')
-.controller('applyController', function($scope, applyService){
+.controller('applyController', function($scope, $state, applyService){
 
 
 // ************************** Creates User *****************
@@ -8,10 +8,9 @@ angular.module('testApp')
     applyService.userObj = Object.assign('applyService.userObj', userObj)
   }
 
-  $scope.createUser = function(){
-    applyService.createUser().then(function(res){
-      $scope.users = res;
-      $state.go('user')
+  $scope.createUser = function(userObj){
+    applyService.createUser(userObj).then(function(res){
+      $state.go('userpage')
     })
   }
 
@@ -28,7 +27,11 @@ angular.module('testApp')
   };
 
   $scope.addDashes2 = function(str, model){
-    $scope.userObj.ssn = applyService.addDashes2(model);
+    $scope.userObj.employertele = applyService.addDashes(model);
   }
+
+  $scope.addDashes3 = function(str, model){
+    $scope.userObj.ssn = applyService.addDashes3(model);
+  };
 
 })

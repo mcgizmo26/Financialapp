@@ -3,19 +3,18 @@
     weight: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
     /*align-items: center;*/
 }
 
 /*************** app form css **************/
 
 .applyform {
-    height: 415px;
+    height: 600px;
     width: 700px;
-    margin-top: 45px;
     display: flex;
     flex-direction: column;
-    ;
-    /*flex-wrap: wrap;*/
     background-color: white;
     overflow: auto;
 }
@@ -51,6 +50,21 @@
 /******************* Applicant Css ******************/
 
 /************ Applicant Top ***************/
+.app-content-uppertop{
+  height: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.user-username {
+  margin-right: 4px;
+  margin-bottom: 20px;
+}
+
 .app-content-top {
     height: auto;
     margin-left: 20px;
@@ -128,6 +142,7 @@ input {
     width:auto;
     display: flex;
     flex-direction: row;
+    margin-bottom: 40px;
 }
 
 #addressinput {
@@ -157,6 +172,25 @@ input {
   margin-top: 5px;
 }
 
+/********************** Applicant Employer ***************/
+
+.employment-section{
+  height: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.employ{
+  margin-right: 5px;
+}
+
+.employnum{
+  margin-right: 5px;
+}
 
 /************************ Button Section *****************************/
 
@@ -168,6 +202,19 @@ input {
 }
 
 .submit1{
+  height: 25px;
+  width: 60px;
+  margin-right: 20px;
+  border: 1px black solid;
+  border-radius: 5px;
+  color: #3B5D6C;
+  /*background-color: grey;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back{
   height: 25px;
   width: 60px;
   border: 1px black solid;

@@ -1,22 +1,36 @@
-.user-container{
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.user-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
-
-.user-box{
-  height: 500px;
-  width: 600px;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: white;
-  flex-direction: column;
-  display: flex;
+.user-info-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
 }
-
-.user-info{
-  height: 100%;
-  width: 100%;
+.user-box {
+    height: 500px;
+    width: 600px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: white;
+    flex-direction: column;
+    display: flex;
+}
+.user-info {
+    height: 100%;
+    width: 25%;
+}
+.employer-p {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.user-info p {
+    margin-bottom: 5px;
+}
+.user-info-populated p {
+    margin-bottom: 5px;
 }

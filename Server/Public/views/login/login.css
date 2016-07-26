@@ -1,6 +1,7 @@
 .applycontainer {
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 
 /*************** app text css **************/

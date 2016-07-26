@@ -2,15 +2,13 @@ angular.module('testApp')
     .service('applyService', function($http) {
 
 
-// ****************** Creates Temporary User Before Push ***************
+// ****************** Creates User ***************
 
-      var self = this;
-      this.userObj = {};
-
-      this.createUser = function(){
-        console.log(self.userObj);
-        return $http.post('/user', self.userObj).then(function(res){
-          return res.data;
+      this.createUser = function(userObj){
+        return $http({
+          method: 'POST',
+          url: '/createuser',
+          data: userObj
         })
       }
 
@@ -31,7 +29,7 @@ angular.module('testApp')
             }
         }
 
-        this.addDashes2 = function(g) {
+        this.addDashes3 = function(g) {
             g = g.replace(/\D|-[^\.]/g, "");
             if (g.length > 0) {
                 if (g.length < 3) {

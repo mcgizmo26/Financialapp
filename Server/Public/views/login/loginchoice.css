@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster+Two:400italic);
 
 
-.homecontainer{
+.login-choice-container{
   height: 100%;
   width: 100%;
   display: flex;
@@ -12,30 +12,49 @@
 
 }
 
-.buisnessname{
-  font-size: 100px;
-  font-family: 'Lobster Two', cursive;
-  font-weight: 400;
+.choice{
+  font-size: 25px;
   color: white;
 }
 
-.lettercolor{
-  color: red;
+.loginsection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 400px;
+  margin-top: 20px;
 }
 
-.login{
-  height: 50px;
-  width: 150px;
-  font-size: 30px;
+.customerchoice{
+  height: 40px;
+  width: 160px;
+  font-size: 20px;
   color: white;
-  border: solid white 5px;
+  border: solid white 3px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.login:hover{
+.customerchoice:hover{
+  color: yellow;
+  border: solid yellow 5px;
+}
+
+.employeechoice{
+  height: 40px;
+  width: 160px;
+  font-size: 20px;
+  color: white;
+  border: solid white 3px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.employeechoice:hover{
   color: yellow;
   border: solid yellow 5px;
 }

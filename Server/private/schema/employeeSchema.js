@@ -12,7 +12,7 @@ mongoose.connect("mongodb://localhost/financial-demo");
 
 // ********************* UnderWriter Schema constructor function **************
 
-var underWriterSchema = new Schema({
+var employeeSchema = new Schema({
   username: {
     type: String,
     required: true,
@@ -39,8 +39,13 @@ var underWriterSchema = new Schema({
       required: true
   }
 
+  users: [{
+    type: String,
+    ref: "User"
+  }]
+
 });
 
 // ****************************** models ******************************
 
-var UnderWriter = mongoose.model("underWriter", underWriterSchema);
+var UnderWriter = mongoose.model("employee", employeeSchema);

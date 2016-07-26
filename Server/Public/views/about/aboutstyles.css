@@ -6,6 +6,7 @@
     margin-left: 20vw;
     margin-right: 20vw;
     overflow: auto;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -61,7 +62,7 @@
         width: auto;*/
         color: white;
         font-size: 20px;
-        
+
     }
     .abouttext p {
         margin-top: 10px;

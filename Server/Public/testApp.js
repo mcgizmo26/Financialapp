@@ -23,21 +23,15 @@ angular.module('testApp', ['ui.router'])
             templateUrl: "./views/qualifications/qualifications.html",
 
         })
-        .state('apply', {
-            url: '/apply',
-            templateUrl: "./views/apply/apply-html/apply.html",
-            controller: 'applyController'
-        })
+
+// *************** User Section *******************
+
         .state('apply1', {
             url: '/apply1',
             templateUrl: "./views/apply/apply-html/apply1.html",
             controller: 'applyController'
         })
-        .state('apply2', {
-            url: '/apply/employerinfo',
-            templateUrl: './views/apply/apply-html/apply2.html',
-            controller: 'applyController'
-        })
+
         .state('apply3', {
             url: '/apply/completedapp',
             templateUrl: './views/apply/apply-html/apply3.html',
@@ -47,6 +41,11 @@ angular.module('testApp', ['ui.router'])
             url: '/login/login',
             templateUrl: './views/login/login.html',
             controller: 'loginController'
+
+        })
+        .state('loginchoice', {
+            url: '/login/loginchoice',
+            templateUrl: './views/login/loginchoice.html',
 
         })
         .state('userpage', {
@@ -64,10 +63,33 @@ angular.module('testApp', ['ui.router'])
                     });
                 }
             }
+        })
+
+
+// ****************** Employee Section *******************
+
+        .state('employeelogin', {
+            url: '/login/employeelogin',
+            templateUrl: './views/login/employeelogin.html',
+            controller: 'loginController'
 
         })
         .state('employeepage', {
             url: '/employeepage',
             templateUrl: './views/employeefolder/employee-html/employee.html',
+            controller: 'employeeController',
+            resolve: {
+                user: function(authService, $state) {
+                    return authService.getCurrentEmployee().then(function(response) {
+                        if (!response.data)
+                            $state.go('employeelogin');
+                        return response.data;
+                    }).catch(function(err) {
+                        $state.go('employeelogin');
+                    });
+                }
+            }
         });
+  // ********************************************************
+  
 })
