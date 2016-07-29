@@ -9,7 +9,7 @@ angular.module("testApp").controller("loginController", function($scope, authSer
         alert('User does not exist');
         $scope.user.password = '';
       } else {
-        $state.go('userpage');
+        $state.go('customerpage');
       }
     }).catch(function(err) {
       alert('Unable to login');

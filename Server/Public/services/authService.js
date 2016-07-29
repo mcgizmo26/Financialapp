@@ -57,7 +57,7 @@ angular.module("testApp").service("authService", function($http) {
   this.employeelogin = function(user) {
     return $http({
       method: 'post',
-      url: '/employeelogin',
+      url: '/login',
       data: user
     }).then(function(response) {
       return response;
@@ -76,7 +76,7 @@ angular.module("testApp").service("authService", function($http) {
   this.getCurrentEmployee = function() {
     return $http({
       method: 'GET',
-      url: '/me1'
+      url: '/me'
     }).then(function(response) {
       return response;
     });

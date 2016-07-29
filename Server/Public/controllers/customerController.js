@@ -1,6 +1,6 @@
 angular.module("testApp")
-    .controller("retrieveController", function($scope, retrieveService, mainService, $state, user) {
-        $scope.userObj = user;
+    .controller("customerController", function($scope, customerService, mainService, $state, user) {
+        $scope.userObj = user[0];
         console.log($scope.userObj);
 
         // $scope.myUsers = retrieveService.getUser().then(function(response) {

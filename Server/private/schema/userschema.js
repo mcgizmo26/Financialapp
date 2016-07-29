@@ -124,7 +124,27 @@ var userSchema = new Schema({
         type: String,
         // required: true
     },
+
+    // role:{
+    //   type: String,
+    // },
+
+    users: [{
+      type: mongoose.Schema.ObjectId,
+      ref: "User"
+    }]
+
 });
+
+// UserSchema.plugin(require('mongoose-role'), {
+//   roles: ['public', 'user', 'admin'],
+//   accessLevels: {
+//     'public': ['public', 'user', 'admin'],
+//     'anon': ['public'],
+//     'user': ['user', 'admin'],
+//     'admin': ['admin']
+//   }
+// });
 
 // ****************************** models ******************************
 

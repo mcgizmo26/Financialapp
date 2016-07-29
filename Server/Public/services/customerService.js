@@ -1,8 +1,8 @@
 angular.module('testApp')
-    .service('retrieveService', function($http) {
+    .service('customerService', function($http) {
 
         this.getUser = function() {
-            return $http.get('/retrieveUsers').then(function(res) {
+            return $http.get('/getUsers').then(function(res) {
                 return res.users;
             })
         }

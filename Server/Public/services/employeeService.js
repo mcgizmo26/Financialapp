@@ -2,7 +2,7 @@ angular.module("testApp")
     .service('employeeService', function($http) {
 
 
-        this.createUser = function(underwriterObj) {
+        this.createUser = function(employeeObj) {
             return $http({
                 method: 'POST',
                 url: '/createemployee',
@@ -12,7 +12,7 @@ angular.module("testApp")
 
 
         this.getUsers = function() {
-            return $http.get('/retrieveusers').then(function(res) {
+            return $http.get('/getusers').then(function(res) {
                 return res;
             })
         }
@@ -23,10 +23,23 @@ angular.module("testApp")
             })
         }
 
-        this.updateUser = function(userid) {
-            console.log(users);
-            return $http.put('/userupdate/' + user._id, user).then(function(res) {
+
+        this.addUserRef = function(userId) {
+            return $http.put('/adduserref/', {id: userId}).then(function(res) {
                 return res;
             })
+        }
+
+        this.updateUser = function(user, id) {
+            return $http.put('/updateuser/' + id, user).then(function(res) {
+                return res;
+            })
+        }
+
+        this.deleteUserRef = function(userId) {
+          console.log("2 :" ,userId);
+          return $http.put('/deleteuserref/', {id: userId}).then(function(res) {
+              return res;
+          })
         }
     })

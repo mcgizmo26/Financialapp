@@ -9,6 +9,7 @@ angular.module('testApp')
   }
 
   $scope.createUser = function(userObj){
+    userObj.role="customer";
     applyService.createUser(userObj).then(function(res){
       $state.go('userpage')
     })

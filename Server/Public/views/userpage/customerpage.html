@@ -1,0 +1,50 @@
+<!-- ********************************** Container ****************************** -->
+<div class="user-container">
+
+
+    <!-- ********************************** User Box ************************** -->
+    <div class="user-box">
+
+
+        <!-- *********************************** Header *************************** -->
+
+        <div class="appheader"><span class="lettercolor">T</span>itan <span class="lettercolor">F</span>inancial</div>
+
+        <div class="appinfo">Users Information</div>
+
+        <!-- ************************************ Body **************************** -->
+        <div class="user-info-container">
+            <div class="user-info">
+                <p>Name: </p>
+                <p>Date of Birth: </p>
+                <p>SSN: </p>
+                <p>Home Number: </p>
+                <p>Cell Number: </p>
+                <p>Email </p>
+                <p>Street Address: </p>
+                <p>City: </p>
+                <p>State: </p>
+                <p>Zip Code: </p>
+                <div class="employer-p">Employer: </div>
+                    <p>Employer Number: </p>
+                    <p>Employer Email: </p>
+                </div>
+            <div class="user-info-populated" ng-repeat="user in users">
+                <p>{{user.firstname}} {{user.lastname}}</p>
+                <p>{{userObj.monthinput}} {{userObj.dayinput}} {{userObj.yearinput}}</p>
+                <p>{{userObj.ssn}}</p>
+                <p>{{userObj.hometele}}</p>
+                <p>{{userObj.celltele}}</p>
+                <p>{{userObj.email}}</p>
+                <p>{{userObj.addressinput}}</p>
+                <p>{{userObj.cityinput}}</p>
+                <p>{{userObj.stateinput}}</p>
+                <p>{{userObj.zipcode}}</p>
+                <div class="employer-p">{{userObj.employername}}</div>
+                    <p>{{userObj.employertele}}</p>
+                    <p>{{userObj.businessemail}}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>

@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 // ******************* Connect to DataBase *******************
 
-mongoose.connect("mongodb://localhost/financial-demo");
+// mongoose.connect("mongodb://localhost/financial-demo");
 
 //********************* the blue print ******************
 
@@ -37,10 +37,10 @@ var employeeSchema = new Schema({
       type: String,
       lowercase: String,
       required: true
-  }
+  },
 
   users: [{
-    type: String,
+    type: mongoose.Schema.ObjectId,
     ref: "User"
   }]
 
@@ -48,4 +48,4 @@ var employeeSchema = new Schema({
 
 // ****************************** models ******************************
 
-var UnderWriter = mongoose.model("employee", employeeSchema);
+module.exports= mongoose.model("employee", employeeSchema);

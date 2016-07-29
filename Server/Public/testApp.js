@@ -48,10 +48,10 @@ angular.module('testApp', ['ui.router'])
             templateUrl: './views/login/loginchoice.html',
 
         })
-        .state('userpage', {
-            url: '/userpage',
-            templateUrl: './views/userpage/userpage.html',
-            controller: 'retrieveController',
+        .state('customerpage', {
+            url: '/customerpage',
+            templateUrl: './views/customerpage/customerpage.html',
+            controller: 'customerController',
             resolve: {
                 user: function(authService, $state) {
                     return authService.getCurrentUser().then(function(response) {
@@ -80,10 +80,10 @@ angular.module('testApp', ['ui.router'])
             controller: 'employeeController',
             resolve: {
                 user: function(authService, $state) {
-                    return authService.getCurrentEmployee().then(function(response) {
+                    return authService.getCurrentUser().then(function(response) {
                         if (!response.data)
                             $state.go('employeelogin');
-                        return response.data;
+                        return response.data[0];
                     }).catch(function(err) {
                         $state.go('employeelogin');
                     });
@@ -91,5 +91,5 @@ angular.module('testApp', ['ui.router'])
             }
         });
   // ********************************************************
-  
+
 })

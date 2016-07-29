@@ -15,6 +15,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var User = require('./private/schema/userschema');
+var Employee = require('./private/schema/employeeschema');
 var mongoose = require('mongoose');
 var passport = require('./passport');
 // *****************************************************************
@@ -47,8 +48,8 @@ app.use(passport.session());
 
 // ***************************** Policies **************************
 var isAuthed = function(req, res, next) {
-  if (!req.isAuthenticated()) return res.status(401).send();
-  return next();
+    if (!req.isAuthenticated()) return res.status(401).send();
+    return next();
 };
 
 
@@ -66,37 +67,22 @@ app.get('/logout', function(req, res, next) {
     return res.status(200).send('logged out');
 });
 
-app.get('/me', function(req, res, next){
-  if (!req.user) return res.status(401).send('current user not found');
-  req.user.password = null;
-  console.log(req.user);
-  return res.status(200).json(req.user)
-})
-// ****************************************************
+app.get('/me', function(req, res, next) {
+        if (!req.user) return res.status(401).send('current user not found');
+        req.user.password = null;
+        User.find(req.user._id)
+            .populate("users")
+            .exec(function(err, user) {
+                if (err) {
+                    return res.send(err);
+                }
+                return res.send(user);
+            })
+        console.log(req.user, "this one");
+        // return res.status(200).json(req.user)
+    })
+    // ****************************************************
 
-
-
-
-// ********** Passport Employee Endpoints ***********
-app.post('/employeelogin', passport.authenticate('local', {
-    successRedirect: '/me1',
-}));
-
-app.get('/employeelogout', function(req, res, next) {
-    req.logout();
-    console.log("logged out")
-    return res.status(200).send('logged out');
-});
-
-app.get('/me1', function(req, res, next){
-  console.log(req.user);
-  if (!req.user) res.status(401).send('current employee not found');
-  delete req.user.password;
-  res.status(200).send(req.user)
-})
-// *****************************************************
-
-// ****************************************************************
 
 
 
@@ -104,62 +90,29 @@ app.get('/me1', function(req, res, next){
 
 // *********************** Endpoints **************************
 
-// ***************** Users **********************
 
-// ***** User Creating *****
 app.post('/createuser', function(req, res) {
     console.log(req.body);
     var newUser = new User(req.body);
     newUser.save(function(err, result) {
-      console.log(err);
+        console.log(err);
         if (err) return res.send(err);
         else res.send(result);
     })
 })
 
 
-// ***** Retrieve User *****
-app.get('/retrieveusers', function(req, res, next) {
-    User.find(req.body, function(err, user) {
-
-        if (err) {
-            return res.send(err);
-        }
-        return res.send(user);
-    })
-})
-// ************************************************
-
-
-
-
-// ****************** Underwriters *******************
-
-app.post('/createunderwriter', function(req, res, next) {
-    User.create(req.body, function(err, user) {
-        if (err) {
-            return res.send(err);
-        }
-        req.session.user = user;
-        return res.send(user);
-    })
-})
-
-// ***** Finding Linked Users *****
-app.get('/retrieveunderwriters', function(req, res, next) {
-    User.find({
-        underwriterId: req.session.user._id,
-        function(err, users) {
+app.get('/getusers', function(req, res, next) {
+    User.find(req.body)
+        .populate("users")
+        .exec(function(err, user) {
             if (err) {
                 return res.send(err);
-            } else {
-                return res.send(err);
             }
-        }
-    })
+            return res.send(user);
+        })
 })
 
-// ***** Finding Users *****
 app.get('/getuser/:userId', function(req, res, next) {
     User.findById(req.params.userId, function(err, result) {
         console.log(err, result);
@@ -171,23 +124,64 @@ app.get('/getuser/:userId', function(req, res, next) {
     })
 })
 
-// ***** Update User *****
-app.put('/userupdate/:userId', function(req, res, next) {
+app.put('/updateuser/:userId', function(req, res, next) {
     console.log(req.body);
-    User.findByAndUpdate(req.params.userId, req.body, function(err, result) {
-        console.log(err, result);
+    User.findByIdAndUpdate(req.params.userId, req.body, {
+        new: true
+    }, function(err, result) {
         if (err) {
             return res.send(err);
         } else {
-            res.send(result);
+            User.findById(req.params.userId, function(err, result) {
+                if (err) {
+                    return res.send(err);
+                } else {
+                    res.send(result);
+                }
+            })
         }
     })
 })
-// ********************************************************
 
+app.put('/adduserref/', function(req, res, next) {
+        console.log("req.user._id: ", req.user._id);
+        User.findByIdAndUpdate(req.user._id, {
+                $push: {
+                    users: req.body.id
+                }
+            }, {
+                new: true
+            })
+            .populate("users")
+            .exec(function(err, result) {
+                if (err) {
+                    return res.send(err);
+                } else {
+                    res.send(result);
+                }
+            })
+    })
+    // for delete endpoint use $pull
+app.put('/deleteuserref/', function(req, res, next) {
+    var newId = JSON.stringify(req.body.id);
+    console.log("req.body: ", req.body.id);
+    User.findByIdAndUpdate(req.user._id, {
+            $pull: {
+                users: req.body.id
+            }
+        }, {
+            new: true
+        })
+        .populate("users")
+        .exec(function(err, result) {
+            if (err) {
+                return res.send(err);
+            } else {
+                res.send(result);
 
-
-
+            }
+        })
+})
 
 // ******************** node server ********************
 
@@ -195,7 +189,7 @@ var port = 3000;
 app.listen(port, function() {
     console.log('listening on port ', port);
 });
-// *****************************************************
+
 
 
 
