@@ -21,8 +21,8 @@ var userSchema = new Schema({
         type: String,
         index: true,
         // required: true,
-        minlength: 3,
-        maxlength: 18
+        minlength: 1,
+        maxlength: 100
     },
 
     firstname: {
