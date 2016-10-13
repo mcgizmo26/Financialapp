@@ -185,7 +185,7 @@ app.put('/deleteuserref/', function(req, res, next) {
 
 // ******************** node server ********************
 
-var port = 3000;
+var port = 80;
 app.listen(port, function() {
     console.log('listening on port ', port);
 });
