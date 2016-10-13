@@ -15,7 +15,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var User = require('./private/schema/userschema');
-var Employee = require('./private/schema/employeeschema');
+var Employee = require('./private/schema/employeeSchema');
 var mongoose = require('mongoose');
 var passport = require('./passport');
 // *****************************************************************
