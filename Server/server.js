@@ -25,7 +25,7 @@ var passport = require('./passport');
 
 
 // ***********  testApp db connect to mongo ***************
-mongoose.connect("mongodb://138.68.43.253/testApp");
+mongoose.connect("mongodb://138.68.43.253/data/db");
 // *********************************************************
 
 var app = express();
