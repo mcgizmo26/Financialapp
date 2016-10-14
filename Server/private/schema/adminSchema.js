@@ -20,9 +20,10 @@ var adminSchema = new Schema({
 
     adminPassword: {
         type: String,
-        index: true
+        index: true,
         // required: true,
-
+        minlength: 3,
+        maxlength: 18
     },
 
     adminFirstname: {

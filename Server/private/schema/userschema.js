@@ -19,8 +19,10 @@ var userSchema = new Schema({
 
     password: {
         type: String,
-        index: true
+        index: true,
         // required: true,
+        minlength: 3,
+        maxlength: 18
     },
 
     firstname: {
