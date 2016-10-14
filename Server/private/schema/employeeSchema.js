@@ -22,9 +22,7 @@ var employeeSchema = new Schema({
   password: {
       type: String,
       index: true,
-      required: true,
-      minlength: 3,
-      maxlength: 18
+      required: true
   },
 
   firstname: {
